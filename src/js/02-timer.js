@@ -13,7 +13,7 @@ let date = new Date();
 let newDate = new Date();
 
 const start = document.querySelector('button');
-flatpickr('input', options);
+flatpickr('#datetime-picker', options);
 start.disabled = true;
 
 const options = {
@@ -39,6 +39,7 @@ const addLeadingZero = value => {
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
+  date = new Date();
   const second = 1000;
   const minute = second * 60;
   const hour = minute * 60;
@@ -53,9 +54,16 @@ function convertMs(ms) {
   // Remaining seconds
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
 
-  return { days, hours, minutes, seconds };
+  setTimer(days, hours, minutes, seconds);
 }
 
 console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
 console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
 console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
+
+function setTimer(days, hours, minutes, seconds) {
+  timerDays.innerHTML = days;
+  timerHours.innerHTML = addLeadingZero(String(hours));
+  timerMinutes.innerHTML = addLeadingZero(String(minutes));
+  timerSeconds.innerHTML = addLeadingZero(String(seconds));
+}
