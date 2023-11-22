@@ -67,3 +67,16 @@ function setTimer(days, hours, minutes, seconds) {
   timerMinutes.innerHTML = addLeadingZero(String(minutes));
   timerSeconds.innerHTML = addLeadingZero(String(seconds));
 }
+
+start.addEventListener('click', () => {
+  start.disabled = true;
+  timer = setInterval(() => {
+    let timeDiff = newDate.getTime() - date.getTime();
+    if (timeDiff > 0) {
+      convertMs(timeDiff);
+    } else {
+      clearInterval(timer);
+      Notify.info('Timer has hit 0!');
+    }
+  }, 1000);
+});
