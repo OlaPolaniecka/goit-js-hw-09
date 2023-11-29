@@ -16,8 +16,8 @@ export function createPromise(position, delay) {
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.form');
 
-  form.addEventListener('submit', event => {
-    event.preventDefault();
+  form.addEventListener('submit', e => {
+    e.preventDefault();
 
     const delay = Number(form.elements['delay'].value);
     const step = Number(form.elements['step'].value);
