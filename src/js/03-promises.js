@@ -20,20 +20,18 @@ const createBtn = document.querySelector('button');
 
 createBtn.addEventListener('submit', e => {
   e.preventDefault();
-  setTimeout(() => {
-    for (let i = 1; i <= amountInput; i++) {
-      const currentDelay = delayInput + (i - 1) * stepInput;
-      createPromise(i, currentDelay)
-        .then(({ position, delay }) => {
-          Notiflix.Notify.success(
-            `✅ Fulfilled promise ${position} in ${delay}ms`
-          );
-        })
-        .catch(({ position, delay }) => {
-          Notiflix.Notify.failure(
-            `❌ Rejected promise ${position} in ${delay}ms`
-          );
-        });
-    }
-  });
+  for (let i = 1; i <= amountInput; i++) {
+    const currentDelay = delayInput + (i - 1) * stepInput;
+    createPromise(i, currentDelay)
+      .then(({ position, delay }) => {
+        Notiflix.Notify.success(
+          `✅ Fulfilled promise ${position} in ${delay}ms`
+        );
+      })
+      .catch(({ position, delay }) => {
+        Notiflix.Notify.failure(
+          `❌ Rejected promise ${position} in ${delay}ms`
+        );
+      });
+  }
 });
