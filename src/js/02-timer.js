@@ -12,10 +12,6 @@ let timer;
 let date = new Date();
 let newDate = new Date();
 
-const start = document.querySelector('button');
-flatpickr('#datetime-picker', options);
-start.disabled = true;
-
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -32,6 +28,10 @@ const options = {
     }
   },
 };
+
+const start = document.querySelector('button');
+flatpickr('#datetime-picker', options);
+start.disabled = true;
 
 const addLeadingZero = value => {
   return value.padStart(2, '0');
